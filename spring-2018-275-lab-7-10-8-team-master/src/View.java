@@ -35,7 +35,15 @@ public class View extends JFrame{
     String[] adrr = new String[] {"images/orc_animation/orc_forward_west.png","images/orc_animation/orc_forward_east.png",
     		"images/orc_animation/orc_forward_north.png","images/orc_animation/orc_forward_south.png",
     		"images/orc_animation/orc_forward_northwest.png","images/orc_animation/orc_forward_southwest.png",
-    		"images/orc_animation/orc_forward_northeast.png","images/orc_animation/orc_forward_southeast.png",
+    		"images/orc_animation/orc_forward_northeast.png","images/orc_animation/orc_forward_southeast.png", 
+    		"images/orc_animation/orc_fire_west.png","images/orc_animation/orc_fire_east.png",
+    		"images/orc_animation/orc_fire_north.png","images/orc_animation/orc_fire_south.png",
+    		"images/orc_animation/orc_fire_northwest.png","images/orc_animation/orc_fire_southwest.png",
+    		"images/orc_animation/orc_fire_northeast.png","images/orc_animation/orc_fire_southeast.png",
+    		"images/orc_animation/orc_jump_west.png","images/orc_animation/orc_jump_east.png",
+    		"images/orc_animation/orc_jump_north.png","images/orc_animation/orc_jump_south.png",
+    		"images/orc_animation/orc_jump_northwest.png","images/orc_animation/orc_jump_southwest.png",
+    		"images/orc_animation/orc_jump_northeast.png","images/orc_animation/orc_jump_southeast.png",
     		};
     ArrayList<BufferedImage[]> orcImages = new ArrayList<BufferedImage[]>();
 
