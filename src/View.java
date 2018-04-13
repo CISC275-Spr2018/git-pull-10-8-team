@@ -147,7 +147,8 @@ public class View extends JFrame{
 			setBackground(Color.gray);
 			g.setColor(Color.gray);
 			
-			switch(d) {
+			pics = orcImages.get(d.getPosition());
+			/*switch(d) {
 			case NORTH:
 				pics = orcImages.get(2);
 				break;
@@ -173,7 +174,7 @@ public class View extends JFrame{
 				pics = orcImages.get(0);
 				break;
 			}
-			
+		*/	
 	    	picNum = (picNum + 1) % frameCount;
 	    	g.drawImage(pics[picNum], xloc, yloc, Color.gray, this);
 		}
