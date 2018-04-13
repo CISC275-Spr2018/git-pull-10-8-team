@@ -20,10 +20,12 @@ import javax.swing.JPanel;
 public class View extends JFrame{
 	BufferedImage[] pics;
 	BufferedImage img;
-	final int frameCount = 10;
+	int frameCount = 10;
 	int picNum = 0;
 	int xloc;
 	int yloc;
+	boolean fire;
+	boolean jump;
 	Direction d = Direction.WEST;
 	final static int frameWidth = 700;
     final static int frameHeight = 700;
@@ -35,7 +37,7 @@ public class View extends JFrame{
     String[] adrr = new String[] {"images/orc_animation/orc_forward_west.png","images/orc_animation/orc_forward_east.png",
     		"images/orc_animation/orc_forward_north.png","images/orc_animation/orc_forward_south.png",
     		"images/orc_animation/orc_forward_northwest.png","images/orc_animation/orc_forward_southwest.png",
-    		"images/orc_animation/orc_forward_northeast.png","images/orc_animation/orc_forward_southeast.png", 
+    		"images/orc_animation/orc_forward_northeast.png","images/orc_animation/orc_forward_southeast.png",
     		"images/orc_animation/orc_fire_west.png","images/orc_animation/orc_fire_east.png",
     		"images/orc_animation/orc_fire_north.png","images/orc_animation/orc_fire_south.png",
     		"images/orc_animation/orc_fire_northwest.png","images/orc_animation/orc_fire_southwest.png",
@@ -68,6 +70,7 @@ public class View extends JFrame{
     	
     	for (int i = 0; i < adrr.length; i++) {
     		img = createImage(new File(adrr[i]));
+    		frameCount = img.getWidth()/imgHeight;
     		
     		pics = new BufferedImage[10];
         	for(int j = 0; j < frameCount; j++)
@@ -125,10 +128,12 @@ public class View extends JFrame{
 		return button;
 	}
 	
-	public void update(int x, int y, Direction d){
+	public void update(int x, int y, Direction d, boolean fire, boolean jump){
 		xloc = x;
 		yloc = y;
 		this.d = d;
+		this.fire = fire;
+		this.jump = jump;
 		
 		repaint();
 		try {
@@ -146,7 +151,14 @@ public class View extends JFrame{
 			setBackground(Color.gray);
 			g.setColor(Color.gray);
 			
-			switch(d) {
+			int i = 0;
+			if(fire)
+				i = 8;
+			if(jump)
+				i = 16;
+			
+			pics = orcImages.get(d.getPosition() + i);
+			/*switch(d) {
 			case NORTH:
 				pics = orcImages.get(2);
 				break;
@@ -172,7 +184,7 @@ public class View extends JFrame{
 				pics = orcImages.get(0);
 				break;
 			}
-			
+		*/	
 	    	picNum = (picNum + 1) % frameCount;
 	    	g.drawImage(pics[picNum], xloc, yloc, Color.gray, this);
 		}

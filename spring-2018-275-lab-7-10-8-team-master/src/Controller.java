@@ -16,6 +16,8 @@ public class Controller {
 	private boolean movementE;
 	private boolean movementW;
 	private boolean movementS;
+	private boolean jump;
+	private boolean fire;
 
 	public Controller(){
 		
@@ -26,6 +28,8 @@ public class Controller {
 		movementE = false;
 		movementW = false;
 		movementS = false;
+		jump = false;
+		fire = false;
 	}
 	
 	public void start(){
@@ -37,26 +41,34 @@ public class Controller {
 			public void keyPressed(KeyEvent e) {
 				int keyCode = e.getKeyCode();
 				
+				if (keyCode == KeyEvent.VK_J){
+					jump = !jump;
+				}
+				if (keyCode == KeyEvent.VK_F){
+					fire = !fire;
+				}
+				
 				if (keyCode == KeyEvent.VK_UP){
 					model.setDirect(Direction.NORTH);
-					view.update(model.getX(), model.getY(), model.getDirect());
+					view.update(model.getX(), model.getY(), model.getDirect(), fire, jump);
 					movementN = true;
 				}
 				if (keyCode == KeyEvent.VK_DOWN){
 					model.setDirect(Direction.SOUTH);
-					view.update(model.getX(), model.getY(), model.getDirect());
+					view.update(model.getX(), model.getY(), model.getDirect(), fire, jump);
 					movementS = true;
 				}
 				if (keyCode == KeyEvent.VK_LEFT){
 					model.setDirect(Direction.WEST);
-					view.update(model.getX(), model.getY(), model.getDirect());
+					view.update(model.getX(), model.getY(), model.getDirect(), fire, jump);
 					movementW = true;
 				}
 				if (keyCode == KeyEvent.VK_RIGHT){
 					model.setDirect(Direction.EAST);
-					view.update(model.getX(), model.getY(), model.getDirect());
+					view.update(model.getX(), model.getY(), model.getDirect(), fire, jump);
 					movementE = true;
 				}
+
 			}
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -116,8 +128,9 @@ public class Controller {
 				view.getButton().requestFocus(true);
 			}
 			
+			
 			//update the view
-			view.update(model.getX(), model.getY(), model.getDirect());
+			view.update(model.getX(), model.getY(), model.getDirect(), fire, jump);
 		}
 		EventQueue.invokeLater(new Runnable(){
 			public void run(){
